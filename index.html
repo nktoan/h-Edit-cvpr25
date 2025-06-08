@@ -187,7 +187,7 @@
 
       <div class="content has-text-centered mt-6" style="max-width: 850px; margin: 0 auto;">
         <h2 class="title is-4 has-text-weight-semibold">
-          🚀 <span class="has-text-info"><strong>Meet <em>h</em>-Edit</strong></span>
+          🚀 <span class="has-text-info"><strong>Summary of <em>h</em>-Edit</strong></span>
         </h2>
 
         <p class="is-size-5 mt-4">
@@ -220,7 +220,7 @@
   <div class="container is-max-desktop">
     <div class="columns is-centered has-text-centered">
       <div class="column is-four-fifths">
-        <h2 class="title is-3">Challenges in Training-Free Image Editing</h2>
+        <h2 class="title is-3">🔍 Challenges in Training-Free Image Editing</h2>
         <div class="content is-size-5 has-text-justified">
           <p>
             • How can we achieve both <strong>editing accuracy</strong> and <strong>faithfulness</strong> to the original image?
@@ -229,7 +229,7 @@
             • How can we effectively combine <strong>multiple editing inputs</strong> (e.g., text, image, style) within a single framework?
           </p>
           <p>
-            • Why do most methods lack a <strong>theoretical foundation</strong> for the editing process?
+            • Most methods lack a <strong>theoretical foundation</strong> for the editing process?
           </p>
           <p class="mt-4 has-text-weight-semibold has-text-centered has-text-info">
             <em>h</em>-Edit is designed to solve all of these — efficiently and elegantly.
@@ -239,6 +239,48 @@
     </div>
   </div>
 </section>
+
+<section class="section">
+  <div class="container is-max-desktop has-text-centered">
+    <h2 class="title is-3 mb-5">
+      <span class="icon has-text-warning mr-2">
+        <i class="fas fa-lightbulb"></i>
+      </span>
+      Key Idea
+    </h2>
+
+    <p class="is-size-4 mb-4">
+      <em>Image editing</em> ≡ <span class="has-text-link has-text-weight-semibold">Bridge modeling</span> problem
+    </p>
+
+    <div class="mb-5">
+      <img src="./static/images/idea.png" alt="Bridge Modelling Illustration" style="max-width: 100%; height: auto; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+    </div>
+
+    <div class="content is-size-5 has-text-justified" style="max-width: 850px; margin: 0 auto;">
+      <p>
+        We formulate image editing as a reverse-time stochastic bridge problem: constructing a bridge from the source distribution 
+        $$ p(x_T) $$ 
+        to a target distribution 
+        $$ p(x_0) \cdot p_{\mathcal{Y}}(y \mid x_0), $$
+        where \( p_{\mathcal{Y}}(y \mid x_0) \) represents the editing objective.
+      </p>
+
+      <p>
+        This formulation provides a principled, theoretical foundation and ensures that edited samples are drawn directly from the desired distribution—yielding high <strong>editing fidelity</strong> and <strong>faithfulness</strong>.
+      </p>
+
+      <p>
+        To incorporate multiple editing objectives (e.g., text, style, reference images), we simply extend the target distribution as:
+        $$
+        p(x_0) \cdot p_{\mathcal{Y}}(y_1 \mid x_0) \cdot p_{\mathcal{Y}}(y_2 \mid x_0) \cdots p_{\mathcal{Y}}(y_n \mid x_0),
+        $$
+        allowing <strong>multiple editing types</strong> to be handled simultaneously in a unified framework.
+      </p>
+    </div>
+  </div>
+</section>
+
 
 <section class="section" id="BibTeX">
   <div class="container is-max-desktop content">
