@@ -186,10 +186,11 @@
     <div class="box" style="background-color: #f9f9f9;">
     <div class="hero-body">
       <div class="content mt-6" style="max-width: 850px; margin: 0 auto;">
-        <img src="./static/images/teaser.png" 
-             alt="h-Edit teaser" 
-             style="max-width: 100%; border-radius: 12px; box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15); margin-bottom: 2rem;">
-
+        <div style="overflow: hidden; border-radius: 12px; box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15); margin-bottom: 2rem;">
+          <img src="./static/images/teaser.png" 
+              alt="h-Edit teaser" 
+              style="margin-top: -15px; width: 100%;">
+        </div>
         <h2 class="title is-4 has-text-weight-semibold has-text-centered">
           🚀 <span class="has-text-info"><strong>Summary of <em>h</em>-Edit</strong></span>
         </h2>
@@ -306,6 +307,19 @@
     </div>
   </div>
 </footer>
+
+<script>
+  function showTab(tab) {
+    // Toggle active tab button
+    document.getElementById('tab-challenges-btn').classList.remove('is-active');
+    document.getElementById('tab-key-idea-btn').classList.remove('is-active');
+    document.getElementById(`tab-${tab}-btn`).classList.add('is-active');
+
+    // Toggle tab content
+    document.getElementById('tab-challenges').style.display = tab === 'challenges' ? 'block' : 'none';
+    document.getElementById('tab-key-idea').style.display = tab === 'key-idea' ? 'block' : 'none';
+  }
+</script>
 
 </body>
 </html>
