@@ -184,11 +184,11 @@
 <section class="hero teaser">
   <div class="container is-max-desktop">
     <div class="hero-body">
-      <div class="has-text-centered">
-        <img src="./static/images/teaser.png" alt="h-Edit teaser" style="max-width: 100%; border-radius: 12px; box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);">
-      </div>
-
       <div class="content mt-6 has-text-left" style="max-width: 850px; margin: 0 auto;">
+        <img src="./static/images/teaser.png" 
+             alt="h-Edit teaser" 
+             style="max-width: 100%; border-radius: 12px; box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15); margin-bottom: 2rem;">
+
         <h2 class="title is-4 has-text-weight-semibold">
           🚀 <span class="has-text-info"><strong>Summary of <em>h</em>-Edit</strong></span>
         </h2>
@@ -243,7 +243,7 @@
   </div>
 </section>
 
-<section class="section" style="background-color: #f9f9f9;">
+<section class="section">
   <div class="container is-max-desktop has-text-centered">
     <h2 class="title is-4 mb-5">
       <span class="icon has-text-warning mr-2">
@@ -271,11 +271,11 @@
       </p>
 
       <p>
-        This formulation provides a principled theoretical foundation and ensures that edited samples are drawn directly from the desired distribution—yielding high <strong>editing fidelity</strong> and <strong>faithfulness</strong>.
+        This formulation provides a <strong>principled theoretical foundation</strong> and ensures that edited samples are drawn directly from the desired distribution—yielding high <strong>editing fidelity</strong> and <strong>faithfulness</strong>.
       </p>
 
       <p>
-        To incorporate multiple editing objectives (e.g., text, style, reference images), we extend the target distribution as:
+        To incorporate multiple editing types (e.g., text, style, reference images), we extend the target distribution as:
         \[
         p(x_0)\, p_{\mathcal{Y}}(y_1 \mid x_0)\, p_{\mathcal{Y}}(y_2 \mid x_0)\, \ldots\, p_{\mathcal{Y}}(y_n \mid x_0),
         \]
