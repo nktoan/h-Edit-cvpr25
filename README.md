@@ -1,8 +1,8 @@
-# Nerfies
+# h-Edit's website
 
 This is the repository that contains source code for the [h-Edit website](https://nktoan.github.io/h-Edit-cvpr25/).
 
-If you find Nerfies useful for your work please cite:
+If you find h-Edit useful for your work please cite:
 ```LaTeX
 @article{nguyen2025hedit,
   title={h-Edit: Effective and Flexible Diffusion-Based Editing via Doob's h-Transform},
