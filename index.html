@@ -3,10 +3,10 @@
 <head>
   <meta charset="utf-8">
   <meta name="description"
-        content="Deformable Neural Radiance Fields creates free-viewpoint portraits (nerfies) from casually captured videos.">
-  <meta name="keywords" content="Nerfies, D-NeRF, NeRF">
+        content="h-Edit: Effective and Flexible Diffusion-Based Editing via Doob’s h-Transform">
+  <meta name="keywords" content="Image editing, Image generation, Diffusion Models">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Nerfies: Deformable Neural Radiance Fields</title>
+  <title>h-Edit: Effective and Flexible Diffusion-Based Editing via Doob’s h-Transform</title>
 
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
@@ -63,18 +63,16 @@
           More Research
         </a>
         <div class="navbar-dropdown">
-          <a class="navbar-item" href="https://hypernerf.github.io">
-            HyperNeRF
+          <a class="navbar-item" href="https://arxiv.org/abs/2502.09655">
+            BDBM (KDD'25)
           </a>
-          <a class="navbar-item" href="https://nerfies.github.io">
-            Nerfies
+          <a class="navbar-item" href="https://arxiv.org/abs/2212.03063">
+            FAGT (KDD'23)
           </a>
-          <a class="navbar-item" href="https://latentfusion.github.io">
-            LatentFusion
+          <a class="navbar-item" href="https://arxiv.org/abs/2310.18598">
+            RDM (WACV'24)
           </a>
-          <a class="navbar-item" href="https://photoshape.github.io">
-            PhotoShape
-          </a>
+
         </div>
       </div>
     </div>
@@ -88,39 +86,42 @@
     <div class="container is-max-desktop">
       <div class="columns is-centered">
         <div class="column has-text-centered">
-          <h1 class="title is-1 publication-title">Nerfies: Deformable Neural Radiance Fields</h1>
+          <h1 class="title is-1 publication-title">
+            h-Edit: Effective and Flexible Diffusion-Based Editing via Doob's h-Transform
+          </h1>
+
           <div class="is-size-5 publication-authors">
             <span class="author-block">
-              <a href="https://keunhong.com">Keunhong Park</a><sup>1</sup>,</span>
-            <span class="author-block">
-              <a href="https://utkarshsinha.com">Utkarsh Sinha</a><sup>2</sup>,</span>
-            <span class="author-block">
-              <a href="https://jonbarron.info">Jonathan T. Barron</a><sup>2</sup>,
+              <a href="https://www.linkedin.com/in/nktoan99/">Toan Nguyen</a><sup>*</sup>,
             </span>
             <span class="author-block">
-              <a href="http://sofienbouaziz.com">Sofien Bouaziz</a><sup>2</sup>,
+              <a href="https://clarken92.github.io/">Kien Do</a><sup>*</sup>,
             </span>
             <span class="author-block">
-              <a href="https://www.danbgoldman.com">Dan B Goldman</a><sup>2</sup>,
+              <a href="https://www.linkedin.com/in/duc-kieu-a2b224154/">Duc Kieu</a>,
             </span>
             <span class="author-block">
-              <a href="https://homes.cs.washington.edu/~seitz/">Steven M. Seitz</a><sup>1,2</sup>,
-            </span>
-            <span class="author-block">
-              <a href="http://www.ricardomartinbrualla.com">Ricardo Martin-Brualla</a><sup>2</sup>
+              <a href="https://experts.deakin.edu.au/6853-thin-nguyen">Thin Nguyen</a>
             </span>
           </div>
 
           <div class="is-size-5 publication-authors">
-            <span class="author-block"><sup>1</sup>University of Washington,</span>
-            <span class="author-block"><sup>2</sup>Google Research</span>
+            <span class="author-block">Deakin Applied Artificial Intelligence Initiative, Deakin University, Australia</span>
+          </div>
+
+          <div class="is-size-6 publication-authors">
+            <span class="author-block"><em><sup>*</sup>Equal contribution</em></span>
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><strong>[CVPR 2025]</strong></span>
           </div>
 
           <div class="column has-text-centered">
             <div class="publication-links">
               <!-- PDF Link. -->
               <span class="link-block">
-                <a href="https://arxiv.org/pdf/2011.12948"
+                <a href="https://arxiv.org/abs/2503.02187"
                    class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
                       <i class="fas fa-file-pdf"></i>
@@ -128,18 +129,9 @@
                   <span>Paper</span>
                 </a>
               </span>
-              <span class="link-block">
-                <a href="https://arxiv.org/abs/2011.12948"
-                   class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
-                      <i class="ai ai-arxiv"></i>
-                  </span>
-                  <span>arXiv</span>
-                </a>
-              </span>
               <!-- Video Link. -->
               <span class="link-block">
-                <a href="https://www.youtube.com/watch?v=MrKrnHhk8IA"
+                <a href="https://www.youtube.com/watch?v=0-zP4abtGHE"
                    class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
                       <i class="fab fa-youtube"></i>
@@ -149,7 +141,7 @@
               </span>
               <!-- Code Link. -->
               <span class="link-block">
-                <a href="https://github.com/google/nerfies"
+                <a href="https://github.com/nktoan/h-edit"
                    class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
                       <i class="fab fa-github"></i>
@@ -157,14 +149,14 @@
                   <span>Code</span>
                   </a>
               </span>
-              <!-- Dataset Link. -->
+              <!-- Poster Link. -->
               <span class="link-block">
-                <a href="https://github.com/google/nerfies/releases/tag/0.1"
+                <a href="https://cvpr.thecvf.com/media/PosterPDFs/CVPR%202025/34726.png?t=1748936267.9054065"
                    class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
                       <i class="far fa-images"></i>
                   </span>
-                  <span>Data</span>
+                  <span>Poster</span>
                   </a>
             </div>
 
