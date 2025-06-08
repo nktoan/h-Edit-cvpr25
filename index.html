@@ -88,7 +88,7 @@
           <h1 class="title is-1 publication-title">
             <span style="
               font-weight: 700;
-              background: linear-gradient(90deg, #ff6ec4, #7873f5, #42e695, #fddb92);
+              background: linear-gradient(90deg, #00b894, #2962ff);
               -webkit-background-clip: text;
               -webkit-text-fill-color: transparent;
               display: inline-block;">
@@ -218,54 +218,25 @@
 
 <section class="section">
   <div class="container is-max-desktop">
-    <!-- Abstract. -->
     <div class="columns is-centered has-text-centered">
       <div class="column is-four-fifths">
-        <h2 class="title is-3">Abstract</h2>
-        <div class="content has-text-justified">
+        <h2 class="title is-3">Challenges in Training-Free Image Editing</h2>
+        <div class="content is-size-5 has-text-justified">
           <p>
-            We present the first method capable of photorealistically reconstructing a non-rigidly
-            deforming scene using photos/videos captured casually from mobile phones.
+            • How can we achieve both <strong>editing accuracy</strong> and <strong>faithfulness</strong> to the original image?
           </p>
           <p>
-            Our approach augments neural radiance fields
-            (NeRF) by optimizing an
-            additional continuous volumetric deformation field that warps each observed point into a
-            canonical 5D NeRF.
-            We observe that these NeRF-like deformation fields are prone to local minima, and
-            propose a coarse-to-fine optimization method for coordinate-based models that allows for
-            more robust optimization.
-            By adapting principles from geometry processing and physical simulation to NeRF-like
-            models, we propose an elastic regularization of the deformation field that further
-            improves robustness.
+            • How can we effectively combine <strong>multiple editing inputs</strong> (e.g., text, image, style) within a single framework?
           </p>
           <p>
-            We show that <span class="dnerf">Nerfies</span> can turn casually captured selfie
-            photos/videos into deformable NeRF
-            models that allow for photorealistic renderings of the subject from arbitrary
-            viewpoints, which we dub <i>"nerfies"</i>. We evaluate our method by collecting data
-            using a
-            rig with two mobile phones that take time-synchronized photos, yielding train/validation
-            images of the same pose at different viewpoints. We show that our method faithfully
-            reconstructs non-rigidly deforming scenes and reproduces unseen views with high
-            fidelity.
+            • Why do most methods lack a <strong>theoretical foundation</strong> for the editing process?
+          </p>
+          <p class="mt-4 has-text-weight-semibold has-text-centered has-text-info">
+            <em>h</em>-Edit is designed to solve all of these — efficiently and elegantly.
           </p>
         </div>
       </div>
     </div>
-    <!--/ Abstract. -->
-
-    <!-- Paper video. -->
-    <div class="columns is-centered has-text-centered">
-      <div class="column is-four-fifths">
-        <h2 class="title is-3">Video</h2>
-        <div class="publication-video">
-          <iframe src="https://www.youtube.com/embed/MrKrnHhk8IA?rel=0&amp;showinfo=0"
-                  frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-        </div>
-      </div>
-    </div>
-    <!--/ Paper video. -->
   </div>
 </section>
 
