@@ -216,68 +216,64 @@
         </p>
       </div>
 
-<section class="section" style="background-color: #f9f9f9;">
+<section class="section">
   <div class="container is-max-desktop">
-    <div class="columns is-centered has-text-centered">
-      <div class="column is-four-fifths">
-        <h2 class="title is-4">🔍 Challenges in Training-Free Image Editing</h2>
+    <!-- Tab Buttons -->
+    <div class="tabs is-toggle is-fullwidth is-centered mb-5">
+      <ul>
+        <li class="is-active" id="tab-challenges-btn">
+          <a onclick="showTab('challenges')">🔍 Challenges</a>
+        </li>
+        <li id="tab-key-idea-btn">
+          <a onclick="showTab('key-idea')">💡 Key Idea</a>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Challenges Content -->
+    <div id="tab-challenges" class="tab-content">
+      <div class="box" style="background-color: #f9f9f9;">
+        <h2 class="title is-4 has-text-centered">🔍 Challenges in Training-Free Image Editing</h2>
         <div class="content is-size-6 has-text-justified">
-          <p>
-            • How can we achieve both <strong>editing accuracy</strong> and <strong>faithfulness</strong> to the original image?
-          </p>
-          <p>
-            • How can we effectively combine <strong>multiple editing inputs</strong> (e.g., text, image, style) within a single framework?
-          </p>
-          <p>
-            • Most methods lack a <strong>theoretical foundation</strong> for the editing process.
-          </p>
+          <p>• How can we achieve both <strong>editing accuracy</strong> and <strong>faithfulness</strong> to the original image?</p>
+          <p>• How can we effectively combine <strong>multiple editing inputs</strong> (e.g., text, image, style) within a single framework?</p>
+          <p>• Most methods lack a <strong>theoretical foundation</strong> for the editing process.</p>
           <p class="mt-4 has-text-weight-semibold has-text-centered has-text-info">
             <em>h</em>-Edit is designed to solve all of these — efficiently and elegantly.
           </p>
         </div>
       </div>
     </div>
-  </div>
-</section>
 
-<section class="section">
-  <div class="container is-max-desktop has-text-centered">
-    <h2 class="title is-4 mb-5">
-      <span class="icon has-text-warning mr-2">
-        <i class="fas fa-lightbulb"></i>
-      </span>
-      Key Idea
-    </h2>
-
-    <p class="is-size-5 mb-4">
-      <em>Image editing</em> as a <span class="has-text-link has-text-weight-semibold">bridge modeling</span> problem
-    </p>
-
-    <div class="mb-5">
-      <img src="./static/images/idea.png" 
-           alt="Bridge Modeling Illustration"
-           style="max-width: 60%; height: auto; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
-    </div>
-
-    <div class="content is-size-6 has-text-justified" style="max-width: 850px; margin: 0 auto;">
-      <p>
-        We formulate image editing as a reverse-time stochastic bridge problem, constructing a bridge from the source distribution 
-        \( p(x_T) \) to a target distribution 
-        \( p(x_0)\, p_{\mathcal{Y}}(y \mid x_0) \),
-        where \( p_{\mathcal{Y}}(y \mid x_0) \) quantifies how likely \( x_0 \) possesses the attribute \( y \).
+    <!-- Key Idea Content (Hidden by default) -->
+    <div id="tab-key-idea" class="tab-content" style="display: none;">
+      <h2 class="title is-4 has-text-centered">💡 Key Idea</h2>
+      <p class="is-size-5 mb-4 has-text-centered">
+        <em>Image editing</em> as a <span class="has-text-link has-text-weight-semibold">bridge modeling</span> problem
       </p>
-
-      <p>
-        This formulation provides a <strong>principled theoretical foundation</strong> and ensures that edited samples are drawn directly from the desired distribution—yielding high <strong>editing fidelity</strong> and <strong>faithfulness</strong>.
-      </p>
-
-      <p>
-        To incorporate multiple editing types (e.g., text, style, reference images), we extend the target distribution as:
-        \[
-        p(x_0)\, p_{\mathcal{Y}}(y_1 \mid x_0)\, p_{\mathcal{Y}}(y_2 \mid x_0)\, \ldots\, p_{\mathcal{Y}}(y_n \mid x_0),
-        \]
-        enabling <strong>multiple editing types</strong> to be handled simultaneously in a unified framework.
-      </p>
+      <div class="mb-5 has-text-centered">
+        <img src="./static/images/idea.png" 
+             alt="Bridge Modeling Illustration"
+             style="max-width: 60%; height: auto; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+      </div>
+      <div class="content is-size-6 has-text-justified" style="max-width: 850px; margin: 0 auto;">
+        <p>
+          We formulate image editing as a reverse-time stochastic bridge problem, constructing a bridge from the source distribution 
+          \( p(x_T) \) to a target distribution 
+          \( p(x_0)\, p_{\mathcal{Y}}(y \mid x_0) \),
+          where \( p_{\mathcal{Y}}(y \mid x_0) \) quantifies how likely \( x_0 \) possesses the attribute \( y \).
+        </p>
+        <p>
+          This provides a <strong>principled theoretical foundation</strong> and ensures samples come directly from the desired distribution—yielding high <strong>editing fidelity</strong> and <strong>faithfulness</strong>.
+        </p>
+        <p>
+          To handle multiple editing types (e.g., text, style), we extend the target distribution:
+          \[
+          p(x_0)\, p_{\mathcal{Y}}(y_1 \mid x_0)\, p_{\mathcal{Y}}(y_2 \mid x_0)\, \ldots\, p_{\mathcal{Y}}(y_n \mid x_0),
+          \]
+          enabling <strong>multiple edits</strong> within one unified framework.
+        </p>
+      </div>
     </div>
   </div>
 </section>
@@ -296,12 +292,12 @@
 </section>
 
 
-<footer class="footer">
+<footer class="footer" style="padding: 1rem 0; background-color: #f5f5f5;">
   <div class="container">
     <div class="columns is-centered">
       <div class="column is-8">
-        <div class="content">
-          <p>
+        <div class="content has-text-centered is-size-7">
+          <p style="margin-bottom: 0;">
             Website adapted from <a href="https://github.com/nerfies/nerfies.github.io">nerfies.github.io</a>. 
             Thanks to the original authors for the template.
           </p>
