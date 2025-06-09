@@ -308,7 +308,7 @@
       </div>
 
       <div class="content is-size-5 has-text-justified" style="max-width: 1000px; margin: 0 auto;">
-        <p><strong>A. Overview:</strong></p>
+        <h4><strong>A. Overview:</strong></h4>
 
         <p>
           We leverage Doob's <em>h</em>-transform to steer the generative process from a source distribution toward a target distribution that satisfies a desired condition. This is implemented in two complementary forms: <strong>implicit</strong> and <strong>explicit</strong>, both enabling flexible guidance without retraining.
@@ -344,7 +344,7 @@
           <li>In the <strong>explicit</strong> form, we use the score \( \nabla_{x_t} \log p^{\text{h}}(x_t) \)</li>
         </ul>
         
-        <p><strong>B. Update Formulations</strong></p>
+        <h4><strong>B. Update Formulations</strong></h4>
 
         <p><strong>Explicit:</strong></p>
         <pre><code>
@@ -376,9 +376,9 @@
           ✅ Especially effective for <strong>hard editing cases</strong> (see experiments).
         </p>
 
-        <p><strong>C. Designing <em>h</em>-Formulations</strong></p>
+        <h4><strong>C. Designing <em>h</em>-Formulations</strong></h4>
 
-        <p><strong>C.1. Text-guided Editing Design:</strong></p>
+        <h4><strong>C.1. Text-guided Editing Design:</strong></h4>
         <pre><code>
           \begin{align*}
           \nabla \log h(x_{t-1}, t - 1) &= \nabla \log p(y \mid x_{t-1}) \\
@@ -410,7 +410,7 @@
               style="max-width: 60%; height: auto; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
         </div>
 
-        <p><strong>C.2. Reward-based Editing:</strong></p>
+        <h4><strong>C.2. Reward-based Editing:</strong></h4>
         <pre><code>
           \begin{align*}
           \nabla \log h(x_{t-1}, t - 1) &= \nabla \log \left[ \sum_{x_0} p(x_0 \mid x_{t-1}) h(x_0, 0) \right] \\
