@@ -396,37 +396,51 @@
           </p>
 
         <h4><strong>C. Designing <em>h</em>-Formulations</strong></h4>
-
-        <h4><strong>C.1. Text-guided Editing Design:</strong></h4>
-        <pre><code>
-          \begin{align*}
-          \nabla \log h(x_{t-1}, t - 1) &= \nabla \log p(y \mid x_{t-1}) \\
-          &= \nabla \log p(x_{t-1} \mid y) - \nabla \log p(x_{t-1})
-          \end{align*}
-        </code></pre>
+        <h4><strong>C.1. Text-Guided Editing Design:</strong></h4>
 
         <p>
-          Where:
-          \( \nabla \log p(x_{t-1} \mid y) = \frac{-\tilde{\epsilon}_\theta(x_{t-1}, t - 1, \mathbf{c}^{\text{edit}})}{\sigma_{t-1}} \),<br>
-          \( \nabla \log p(x_{t-1}) = \frac{-\tilde{\epsilon}_\theta(x_{t-1}, t - 1, \mathbf{c}^{\text{orig}})}{\sigma_{t-1}} \)
+        We compute the gradient of the <em>h</em>-function as:
         </p>
 
-        <p><strong>Classifier-Free Guidance:</strong></p>
-        <pre>
-          <code>
-          \tilde{\epsilon}_\theta = (1 - w) \epsilon_\theta(x, t, \varnothing) + w \epsilon_\theta(x, t, \mathbf{c})
-          </code>
-        </pre>
+        <p>
+        \[
+        \begin{aligned}
+        \nabla \log h(x_{t-1}, t - 1) &= \nabla \log p(y \mid x_{t-1}) \\
+        &= \nabla \log p(x_{t-1} \mid y) - \nabla \log p(x_{t-1})
+        \end{aligned}
+        \]
+        </p>
 
         <p>
-          The role of \( \hat{w}^{\text{orig}} \) is essential to suppress undesired content and reinforce target features.
+        Where:
+        \[
+        \nabla \log p(x_{t-1} \mid y) = \frac{-\tilde{\epsilon}_\theta(x_{t-1}, t - 1, c^{\text{edit}})}{\sigma_{t-1}}, \quad
+        \nabla \log p(x_{t-1}) = \frac{-\tilde{\epsilon}_\theta(x_{t-1}, t - 1, c^{\text{orig}})}{\sigma_{t-1}}
+        \]
+        </p>
+
+        <p>
+        We use classifier-free guidance to compute \( \tilde{\epsilon}_\theta \) as follows:
+        </p>
+
+        <p>
+        \[
+        \begin{aligned}
+        \tilde{\epsilon}_\theta(x_{t-1}, t - 1, c^{\text{edit}}) &= (1 - w^{\text{edit}})\, \epsilon_\theta(x_{t-1}, t - 1, \varnothing) + w^{\text{edit}}\, \epsilon_\theta(x_{t-1}, t - 1, c^{\text{edit}}) \\
+        \tilde{\epsilon}_\theta(x_{t-1}, t - 1, c^{\text{orig}}) &= (1 - w^{\text{orig}})\, \epsilon_\theta(x_{t-1}, t - 1, \varnothing) + w^{\text{orig}}\, \epsilon_\theta(x_{t-1}, t - 1, c^{\text{orig}})
+        \end{aligned}
+        \]
+        </p>
+
+        <p class="has-text-info has-text-weight-semibold">
+        ✅ The weight \( w^{\text{orig}} \) plays a key role in suppressing undesired content while preserving the identity or structure of the original sample.
         </p>
 
         <p><strong>Comparison with other methods:</strong></p>
         <div class="mb-5 has-text-centered">
           <img src="./static/images/overview_update_h-Edit.png" 
               alt="h-Edit vs others"
-              style="max-width: 80%; height: auto; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+              style="max-width: 85%; height: auto; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
         </div>
 
         <h4><strong>C.2. Reward-based Editing:</strong></h4>
