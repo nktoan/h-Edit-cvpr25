@@ -346,35 +346,54 @@
         
         <h4><strong>B. Update Formulations</strong></h4>
 
-        <p><strong>Explicit:</strong></p>
-        <pre><code>
-          \begin{align*}
-          x_{t-1} &\approx x_t + \eta \nabla_{x_t} \log (p(x_t) h(x_t, t)) + \sqrt{2\eta} z \\
+        <p><strong>Explicit Form:</strong></p>
+          <p>
+          We perform a direct update using the score of the modified marginal distribution:
+          </p>
+
+          <p>
+          \[
+          \begin{aligned}
+          x_{t-1} &\approx x_t + \eta \nabla_{x_t} \log \left( p(x_t)\, h(x_t, t) \right) + \sqrt{2\eta}\, z \\
           &= \underbrace{x_{t-1}^{\text{base}}}_{\text{rec.}} + \underbrace{\eta \nabla_{x_t} \log h(x_t, t)}_{\text{editing}}
-          \end{align*}
-        </code></pre>
+          \end{aligned}
+          \]
+          </p>
 
-        <p><strong>Implicit:</strong></p>
-        <pre><code>
-          \begin{align*}
-          x_{t-1} &\approx x_{t-1}^{\text{init}} + \gamma \nabla_{x_{t-1}} \log p^h(x_{t-1} \mid x_t) + \sqrt{2\gamma} z \\
+          <p>
+          <span style="color: #ff5f57;"><strong>Key Advantage of Explicit Form:</strong></span> The update naturally decomposes into a <em>reconstruction</em> term and an <em>editing</em> term. This allows incorporating multiple editing objectives by simply adding more <em>h</em>-functions.
+          </p>
+
+          <p><strong>Implicit Form:</strong></p>
+          <p>
+          We update \( x_{t-1} \) using the gradient of the modified transition distribution:
+          </p>
+
+          <p>
+          \[
+          \begin{aligned}
+          x_{t-1} &\approx x_{t-1}^{\text{init}} + \gamma \nabla_{x_{t-1}} \log p^{\text{h}}(x_{t-1} \mid x_t) + \sqrt{2\gamma}\, z \\
           &= \underbrace{x_{t-1}^{\text{base}}}_{\text{rec.}} + \underbrace{\gamma \nabla_{x_{t-1}} \log h(x_{t-1}^{\text{base}}, t-1)}_{\text{editing}}
-          \end{align*}
-        </code></pre>
+          \end{aligned}
+          \]
+          </p>
 
-        <p>
-          <span style="color: #ff5f57;"><strong>Key Advantage:</strong></span> Implicit updates can be cast as an <strong>optimization problem</strong> over \( x_{t-1} \):
-        </p>
-        <pre><code>
-          \begin{align*}
+          <p>
+          <span style="color: #ff5f57;"><strong>Key Advantage of Implicit Form:</strong></span> The update can be framed as an <strong>optimization problem</strong> over \( x_{t-1} \), enabling iterative refinement:
+          </p>
+
+          <p>
+          \[
+          \begin{aligned}
           x_{t-1}^{(0)} &= x_{t-1}^{\text{base}} \\
           x_{t-1}^{(k+1)} &= x_{t-1}^{(k)} + \gamma \nabla_{x_{t-1}} \log h(x_{t-1}^{(k)}, t - 1)
-          \end{align*}
-        </code></pre>
+          \end{aligned}
+          \]
+          </p>
 
-        <p class="has-text-info has-text-weight-semibold">
+          <p class="has-text-info has-text-weight-semibold">
           ✅ Especially effective for <strong>hard editing cases</strong> (see experiments).
-        </p>
+          </p>
 
         <h4><strong>C. Designing <em>h</em>-Formulations</strong></h4>
 
@@ -407,7 +426,7 @@
         <div class="mb-5 has-text-centered">
           <img src="./static/images/overview_update_h-Edit.png" 
               alt="h-Edit vs others"
-              style="max-width: 60%; height: auto; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+              style="max-width: 80%; height: auto; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
         </div>
 
         <h4><strong>C.2. Reward-based Editing:</strong></h4>
