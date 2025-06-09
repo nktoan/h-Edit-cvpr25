@@ -312,7 +312,7 @@
           We propose using Doob's <em>h</em>-transform to bridge the source and target distributions. This is implemented in two forms: <strong>implicit</strong> and <strong>explicit</strong>.
         </p>
 
-        <p><strong>Implicit form:</strong></p>
+        <p><strong>Implicit form</strong> <span style="color: #209cee;">(slightly better)</span>:</p>
         <p>
           We modify the transition distribution \( p(x_{t-1} \mid x_t) \) using the <em>h</em>-transform:
         </p>
@@ -337,10 +337,10 @@
           As shown in our paper, adjusting \( p(x_{t-1} \mid x_t) \) and \( p(x_t) \) in this manner helps the process converge toward the desired target distribution at the final time step.
         </p>
 
-        <p><strong>Sampling:</strong> Langevin Monte Carlo (LMC) is used for both forms:</p>
+        <p><strong>Sampling:</strong> To generate the next sample \( x_{t-1}^{\text{edit}} \), we apply Langevin Monte Carlo (LMC) sampling in both cases:</p>
         <ul>
-          <li>From \( p^{\text{h}}(x_{t-1} \mid x_t) \) in the implicit case</li>
-          <li>Using \( \nabla_{x_t} \log p^{\text{h}}(x_t) \) in the explicit case</li>
+          <li>In the <strong>implicit</strong> form, we sample from \( p^{\text{h}}(x_{t-1} \mid x_t) \)</li>
+          <li>In the <strong>explicit</strong> form, we use the score \( \nabla_{x_t} \log p^{\text{h}}(x_t) \)</li>
         </ul>
 
         <p><strong>Update Formulations</strong></p>
