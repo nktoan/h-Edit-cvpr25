@@ -304,14 +304,15 @@
       <div class="mb-5 has-text-centered">
         <img src="./static/images/h_transform_idea.png" 
             alt="h-transform Illustration"
-            style="max-width: 40%; height: auto; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+            style="max-width: 80%; height: auto; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
       </div>
 
       <div class="content is-size-5 has-text-justified" style="max-width: 1000px; margin: 0 auto;">
-        <p>
-          We propose using Doob's <em>h</em>-transform to bridge the source and target distributions. This is implemented in two forms: <strong>implicit</strong> and <strong>explicit</strong>.
-        </p>
+        <p><strong>A. Overview:</strong></p>
 
+        <p>
+          We leverage Doob's <em>h</em>-transform to steer the generative process from a source distribution toward a target distribution that satisfies a desired condition. This is implemented in two complementary forms: <strong>implicit</strong> and <strong>explicit</strong>, both enabling flexible guidance without retraining.
+        </p>
         <p><strong>Implicit form</strong> <span style="color: #209cee;">(slightly better)</span>:</p>
         <p>
           We modify the transition distribution \( p(x_{t-1} \mid x_t) \) using the <em>h</em>-transform:
@@ -342,8 +343,9 @@
           <li>In the <strong>implicit</strong> form, we sample from \( p^{\text{h}}(x_{t-1} \mid x_t) \)</li>
           <li>In the <strong>explicit</strong> form, we use the score \( \nabla_{x_t} \log p^{\text{h}}(x_t) \)</li>
         </ul>
+        
+        <p><strong>B. Update Formulations</strong></p>
 
-        <p><strong>Update Formulations</strong></p>
         <p><strong>Explicit:</strong></p>
         <pre><code>
           \begin{align*}
@@ -374,7 +376,9 @@
           ✅ Especially effective for <strong>hard editing cases</strong> (see experiments).
         </p>
 
-        <p><strong>Text-guided Editing Design:</strong></p>
+        <p><strong>C. Designing <em>h</em>-Formulations</strong></p>
+
+        <p><strong>C.1. Text-guided Editing Design:</strong></p>
         <pre><code>
           \begin{align*}
           \nabla \log h(x_{t-1}, t - 1) &= \nabla \log p(y \mid x_{t-1}) \\
@@ -406,7 +410,7 @@
               style="max-width: 60%; height: auto; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
         </div>
 
-        <p><strong>Reward-based Editing:</strong></p>
+        <p><strong>C.2. Reward-based Editing:</strong></p>
         <pre><code>
           \begin{align*}
           \nabla \log h(x_{t-1}, t - 1) &= \nabla \log \left[ \sum_{x_0} p(x_0 \mid x_{t-1}) h(x_0, 0) \right] \\
