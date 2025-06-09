@@ -283,6 +283,37 @@
         </p>
       </div>
     </div>
+
+    <!-- Method Content (Hidden by default) -->
+    <div id="tab-key-idea" class="tab-content" style="display: none;">
+      <h2 class="title is-3 has-text-centered">💡 Key Idea</h2>
+      <p class="is-size-4 mb-4 has-text-centered">
+        <em>Doob's <em>h</em>-transform to build the bridge from the source and target distributions
+      </p>
+      <div class="mb-5 has-text-centered">
+        <img src="./static/images/idea.png" 
+             alt="Bridge Modeling Illustration"
+             style="max-width: 40%; height: auto; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+      </div>
+      <div class="content is-size-5 has-text-justified" style="max-width: 1000px; margin: 0 auto;">
+        <p>
+          We formulate image editing as a reverse-time bridge modelling problem, constructing a bridge from the source distribution 
+          \( p(x_T) \) to a target distribution 
+          \( p(x_0)\, p_{\mathcal{Y}}(y \mid x_0) \),
+          where \( p_{\mathcal{Y}}(y \mid x_0) \) quantifies how likely \( x_0 \) possesses the attribute \( y \).
+        </p>
+        <p>
+          This provides a <strong>principled theoretical foundation</strong> and ensures samples come directly from the desired distribution—yielding high <strong>editing fidelity</strong> and <strong>faithfulness</strong>.
+        </p>
+        <p>
+          To handle multiple editing types (e.g., text, style), we extend the target distribution:
+          \[
+          p(x_0)\, p_{\mathcal{Y}}(y_1 \mid x_0)\, p_{\mathcal{Y}}(y_2 \mid x_0)\, \ldots\, p_{\mathcal{Y}}(y_n \mid x_0),
+          \]
+          enabling <strong>multiple edits</strong> within one unified framework.
+        </p>
+      </div>
+    </div>
   </div>
 </section>
 
