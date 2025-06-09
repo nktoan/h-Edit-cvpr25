@@ -289,32 +289,52 @@
 
     <!-- Method Tab Content (Hidden by default) -->
     <div id="tab-method" class="tab-content" style="display: none;">
-      <h2 class="title is-3 has-text-centered">🧠 Method
+      <h2 class="title is-3 has-text-centered">🧠 Method </h2>
       <p class="is-size-4 mb-4 has-text-centered">
-        <em>Doob's <em>h</em>-transform</em> as the core method to construct the bridge.
+        <span style="
+          font-weight: 700;
+          background: linear-gradient(90deg, #00b894, #2962ff);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          display: inline-block;">
+          Doob's <em>h</em>-transform
+        </span> as the core method to construct the bridge.
       </p>
 
       <div class="mb-5 has-text-centered">
         <img src="./static/images/h_transform_idea.png" 
             alt="h-transform Illustration"
-            style="max-width: 20%; height: auto; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+            style="max-width: 40%; height: auto; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
       </div>
 
       <div class="content is-size-5 has-text-justified" style="max-width: 1000px; margin: 0 auto;">
         <p>
-          We propose using <strong>Doob's <em>h</em>-transform</strong> to bridge the source and target distributions. This is implemented in two forms: <strong>implicit</strong> and <strong>explicit</strong>.
+          We propose using Doob's <em>h</em>-transform to bridge the source and target distributions. This is implemented in two forms: <strong>implicit</strong> and <strong>explicit</strong>.
         </p>
 
         <p><strong>Implicit form:</strong></p>
         <p>
-          
-          \[ p^{\text{h}}(x_{t-1} \mid x_t) = \frac{p(x_{t-1} \mid x_t) h(x_{t-1}, t - 1)}{h(x_t, t)} \]
-          where \( h(x_t, t) \approx p_{\mathcal{Y}}(y \mid x_t) \).
+          We modify the transition distribution \( p(x_{t-1} \mid x_t) \) using the <em>h</em>-transform:
+        </p>
+        <p>
+          \[
+          p^{\text{h}}(x_{t-1} \mid x_t) = \frac{p(x_{t-1} \mid x_t)\, h(x_{t-1}, t - 1)}{h(x_t, t)}
+          \]
+          where \( h(x_t, t) \coloneqq p_{\mathcal{Y}}(y \mid x_t) \) quantifies how likely \( x_t \) possesses the attribute \( y \).
         </p>
 
         <p><strong>Explicit form:</strong></p>
         <p>
-          \[ p^{\text{h}}(x_t) = \frac{p(x_t) h(x_t, t)}{\mathbb{E}_{p(x_0)}[h(x_0, 0)]} \]
+          We modify the marginal distribution \( p(x_t) \) using the <em>h</em>-transform:
+        </p>
+        <p>
+          \[
+          p^{\text{h}}(x_t) = \frac{p(x_t)\, h(x_t, t)}{\mathbb{E}_{p(x_0)}[h(x_0, 0)]}
+          \]
+        </p>
+
+        <p>
+          As shown in our paper, adjusting \( p(x_{t-1} \mid x_t) \) and \( p(x_t) \) in this manner helps the process converge toward the desired target distribution at the final time step.
         </p>
 
         <p><strong>Sampling:</strong> Langevin Monte Carlo (LMC) is used for both forms:</p>
