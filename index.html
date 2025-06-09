@@ -433,14 +433,14 @@
         </p>
 
         <p class="has-text-info has-text-weight-semibold">
-        ✅ The weight \( \hat{w}^{\text{orig}} \) (different from \( w^{\text{orig}} \) used in the inversion process) plays a key role in suppressing undesired content while preserving the identity or structure of the original sample.
+        ✅ The weight \( \hat{w}^{\text{orig}} \) (different from \( w^{\text{orig}} \) used in the inversion process) plays a key role in suppressing negative content in editing while preserving the identity or structure of the original sample (see experiments).
         </p>
 
         <p><strong>Comparison with other methods:</strong></p>
         <div class="mb-5 has-text-centered">
           <img src="./static/images/overview_update_h-Edit.png" 
               alt="h-Edit vs others"
-              style="max-width: 90%; height: auto; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+              style="max-width: 100%; height: auto; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
         </div>
 
         <h4><strong>C.2. Reward-Based Editing</strong></h4>
@@ -460,7 +460,7 @@
         </p>
 
         <p>
-        Here, \( x_0 \mid x_{t-1} \) is approximated using <strong>Tweedie’s formula</strong>, enabling reward-driven gradients from models trained at timestep 0 to influence editing at later steps. We apply this approach to style transfer using CLIP and face swapping using ArcFace (see experiments).
+        Here, \( x_0 \mid x_{t-1} \) is approximated using <strong>Tweedie's formula</strong>, enabling reward-driven gradients from models trained at timestep 0 to influence editing at later steps. We apply this approach to style transfer using CLIP and face swapping using ArcFace (see experiments).
         </p>
 
       </div>
