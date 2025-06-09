@@ -427,34 +427,42 @@
         \[
         \begin{aligned}
         \tilde{\epsilon}_\theta(x_{t-1}, t - 1, c^{\text{edit}}) &= (1 - w^{\text{edit}})\, \epsilon_\theta(x_{t-1}, t - 1, \varnothing) + w^{\text{edit}}\, \epsilon_\theta(x_{t-1}, t - 1, c^{\text{edit}}) \\
-        \tilde{\epsilon}_\theta(x_{t-1}, t - 1, c^{\text{orig}}) &= (1 - w^{\text{orig}})\, \epsilon_\theta(x_{t-1}, t - 1, \varnothing) + w^{\text{orig}}\, \epsilon_\theta(x_{t-1}, t - 1, c^{\text{orig}})
+        \tilde{\epsilon}_\theta(x_{t-1}, t - 1, c^{\text{orig}}) &= (1 - \hat{w}^{\text{orig}})\, \epsilon_\theta(x_{t-1}, t - 1, \varnothing) + \hat{w}^{\text{orig}}\, \epsilon_\theta(x_{t-1}, t - 1, c^{\text{orig}})
         \end{aligned}
         \]
         </p>
 
         <p class="has-text-info has-text-weight-semibold">
-        ✅ The weight \( w^{\text{orig}} \) plays a key role in suppressing undesired content while preserving the identity or structure of the original sample.
+        ✅ The weight \( \hat{w}^{\text{orig}} \) (different from \( w^{\text{orig}} \) used in the inversion process) plays a key role in suppressing undesired content while preserving the identity or structure of the original sample.
         </p>
 
         <p><strong>Comparison with other methods:</strong></p>
         <div class="mb-5 has-text-centered">
           <img src="./static/images/overview_update_h-Edit.png" 
               alt="h-Edit vs others"
-              style="max-width: 85%; height: auto; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+              style="max-width: 90%; height: auto; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
         </div>
 
-        <h4><strong>C.2. Reward-based Editing:</strong></h4>
-        <pre><code>
-          \begin{align*}
-          \nabla \log h(x_{t-1}, t - 1) &= \nabla \log \left[ \sum_{x_0} p(x_0 \mid x_{t-1}) h(x_0, 0) \right] \\
-          &= \nabla \log \left[ \mathbb{E}_{p(x_0 \mid x_{t-1})}[h(x_0, 0)] \right] \\
-          &\approx \nabla \log [ h(x_0 \mid x_{t-1}, 0) ]
-          \end{align*}
-        </code></pre>
+        <h4><strong>C.2. Reward-Based Editing</strong></h4>
 
         <p>
-          Where \( x_0 \mid x_{t-1} \) is approximated via <strong>Tweedie's formula</strong>. This enables reward-driven gradients from models trained on \( x_0 \) to guide editing.
+        We compute the gradient of the <em>h</em>-function based on rewards defined at the initial step:
         </p>
+
+        <p>
+        \[
+        \begin{aligned}
+        \nabla \log h(x_{t-1}, t - 1) &= \nabla \log \left[ \sum_{x_0} p(x_0 \mid x_{t-1})\, h(x_0, 0) \right] \\
+        &= \nabla \log \left[ \mathbb{E}_{p(x_0 \mid x_{t-1})} [h(x_0, 0)] \right] \\
+        &\approx \nabla \log \left[ h(x_0 \mid x_{t-1}, 0) \right]
+        \end{aligned}
+        \]
+        </p>
+
+        <p>
+        Here, \( x_0 \mid x_{t-1} \) is approximated using <strong>Tweedie’s formula</strong>, enabling reward-driven gradients from models trained at timestep 0 to influence editing at later steps. We apply this approach to style transfer using CLIP and face swapping using ArcFace (see experiments).
+        </p>
+
       </div>
     </div>
   </div>
