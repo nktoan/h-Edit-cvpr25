@@ -236,6 +236,9 @@
         <li id="tab-key-idea-btn">
           <a onclick="showTab('key-idea')">💡 Key Idea</a>
         </li>
+        <li id="tab-method-btn">
+          <a onclick="showTab('method')">🧠 Method</a>
+        </li>
       </ul>
     </div>
 
@@ -284,37 +287,119 @@
       </div>
     </div>
 
-    <!-- Method Content (Hidden by default) -->
-    <div id="tab-key-idea" class="tab-content" style="display: none;">
-      <h2 class="title is-3 has-text-centered">💡 Key Idea</h2>
+    <!-- Method Tab Content (Hidden by default) -->
+    <div id="tab-method" class="tab-content" style="display: none;">
+      <h2 class="title is-3 has-text-centered">🧠 Method
       <p class="is-size-4 mb-4 has-text-centered">
-        <em>Doob's <em>h</em>-transform to build the bridge from the source and target distributions
+        <em>Doob's <em>h</em>-transform</em> as the core method to construct the bridge.
       </p>
+
       <div class="mb-5 has-text-centered">
-        <img src="./static/images/idea.png" 
-             alt="Bridge Modeling Illustration"
-             style="max-width: 40%; height: auto; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+        <img src="./static/images/h_transform_idea.png" 
+            alt="h-transform Illustration"
+            style="max-width: 20%; height: auto; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
       </div>
+
       <div class="content is-size-5 has-text-justified" style="max-width: 1000px; margin: 0 auto;">
         <p>
-          We formulate image editing as a reverse-time bridge modelling problem, constructing a bridge from the source distribution 
-          \( p(x_T) \) to a target distribution 
-          \( p(x_0)\, p_{\mathcal{Y}}(y \mid x_0) \),
-          where \( p_{\mathcal{Y}}(y \mid x_0) \) quantifies how likely \( x_0 \) possesses the attribute \( y \).
+          We propose using <strong>Doob's <em>h</em>-transform</strong> to bridge the source and target distributions. This is implemented in two forms: <strong>implicit</strong> and <strong>explicit</strong>.
         </p>
+
+        <p><strong>Implicit form:</strong></p>
         <p>
-          This provides a <strong>principled theoretical foundation</strong> and ensures samples come directly from the desired distribution—yielding high <strong>editing fidelity</strong> and <strong>faithfulness</strong>.
+          
+          \[ p^{\text{h}}(x_{t-1} \mid x_t) = \frac{p(x_{t-1} \mid x_t) h(x_{t-1}, t - 1)}{h(x_t, t)} \]
+          where \( h(x_t, t) \approx p_{\mathcal{Y}}(y \mid x_t) \).
         </p>
+
+        <p><strong>Explicit form:</strong></p>
         <p>
-          To handle multiple editing types (e.g., text, style), we extend the target distribution:
-          \[
-          p(x_0)\, p_{\mathcal{Y}}(y_1 \mid x_0)\, p_{\mathcal{Y}}(y_2 \mid x_0)\, \ldots\, p_{\mathcal{Y}}(y_n \mid x_0),
-          \]
-          enabling <strong>multiple edits</strong> within one unified framework.
+          \[ p^{\text{h}}(x_t) = \frac{p(x_t) h(x_t, t)}{\mathbb{E}_{p(x_0)}[h(x_0, 0)]} \]
+        </p>
+
+        <p><strong>Sampling:</strong> Langevin Monte Carlo (LMC) is used for both forms:</p>
+        <ul>
+          <li>From \( p^{\text{h}}(x_{t-1} \mid x_t) \) in the implicit case</li>
+          <li>Using \( \nabla_{x_t} \log p^{\text{h}}(x_t) \) in the explicit case</li>
+        </ul>
+
+        <p><strong>Update Formulations</strong></p>
+        <p><strong>Explicit:</strong></p>
+        <pre><code>
+          \begin{align*}
+          x_{t-1} &\approx x_t + \eta \nabla_{x_t} \log (p(x_t) h(x_t, t)) + \sqrt{2\eta} z \\
+          &= \underbrace{x_{t-1}^{\text{base}}}_{\text{rec.}} + \underbrace{\eta \nabla_{x_t} \log h(x_t, t)}_{\text{editing}}
+          \end{align*}
+        </code></pre>
+
+        <p><strong>Implicit:</strong></p>
+        <pre><code>
+          \begin{align*}
+          x_{t-1} &\approx x_{t-1}^{\text{init}} + \gamma \nabla_{x_{t-1}} \log p^h(x_{t-1} \mid x_t) + \sqrt{2\gamma} z \\
+          &= \underbrace{x_{t-1}^{\text{base}}}_{\text{rec.}} + \underbrace{\gamma \nabla_{x_{t-1}} \log h(x_{t-1}^{\text{base}}, t-1)}_{\text{editing}}
+          \end{align*}
+        </code></pre>
+
+        <p>
+          <span style="color: #ff5f57;"><strong>Key Advantage:</strong></span> Implicit updates can be cast as an <strong>optimization problem</strong> over \( x_{t-1} \):
+        </p>
+        <pre><code>
+          \begin{align*}
+          x_{t-1}^{(0)} &= x_{t-1}^{\text{base}} \\
+          x_{t-1}^{(k+1)} &= x_{t-1}^{(k)} + \gamma \nabla_{x_{t-1}} \log h(x_{t-1}^{(k)}, t - 1)
+          \end{align*}
+        </code></pre>
+
+        <p class="has-text-info has-text-weight-semibold">
+          ✅ Especially effective for <strong>hard editing cases</strong> (see experiments).
+        </p>
+
+        <p><strong>Text-guided Editing Design:</strong></p>
+        <pre><code>
+          \begin{align*}
+          \nabla \log h(x_{t-1}, t - 1) &= \nabla \log p(y \mid x_{t-1}) \\
+          &= \nabla \log p(x_{t-1} \mid y) - \nabla \log p(x_{t-1})
+          \end{align*}
+        </code></pre>
+
+        <p>
+          Where:
+          \( \nabla \log p(x_{t-1} \mid y) = \frac{-\tilde{\epsilon}_\theta(x_{t-1}, t - 1, \mathbf{c}^{\text{edit}})}{\sigma_{t-1}} \),<br>
+          \( \nabla \log p(x_{t-1}) = \frac{-\tilde{\epsilon}_\theta(x_{t-1}, t - 1, \mathbf{c}^{\text{orig}})}{\sigma_{t-1}} \)
+        </p>
+
+        <p><strong>Classifier-Free Guidance:</strong></p>
+        <pre>
+          <code>
+          \tilde{\epsilon}_\theta = (1 - w) \epsilon_\theta(x, t, \varnothing) + w \epsilon_\theta(x, t, \mathbf{c})
+          </code>
+        </pre>
+
+        <p>
+          The role of \( \hat{w}^{\text{orig}} \) is essential to suppress undesired content and reinforce target features.
+        </p>
+
+        <p><strong>Comparison with other methods:</strong></p>
+        <div class="mb-5 has-text-centered">
+          <img src="./static/images/overview_update_h-Edit.png" 
+              alt="h-Edit vs others"
+              style="max-width: 60%; height: auto; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+        </div>
+
+        <p><strong>Reward-based Editing:</strong></p>
+        <pre><code>
+          \begin{align*}
+          \nabla \log h(x_{t-1}, t - 1) &= \nabla \log \left[ \sum_{x_0} p(x_0 \mid x_{t-1}) h(x_0, 0) \right] \\
+          &= \nabla \log \left[ \mathbb{E}_{p(x_0 \mid x_{t-1})}[h(x_0, 0)] \right] \\
+          &\approx \nabla \log [ h(x_0 \mid x_{t-1}, 0) ]
+          \end{align*}
+        </code></pre>
+
+        <p>
+          Where \( x_0 \mid x_{t-1} \) is approximated via <strong>Tweedie's formula</strong>. This enables reward-driven gradients from models trained on \( x_0 \) to guide editing.
         </p>
       </div>
     </div>
-
   </div>
 </section>
 
@@ -349,14 +434,18 @@
 
 <script>
   function showTab(tab) {
-    // Toggle active tab button
-    document.getElementById('tab-challenges-btn').classList.remove('is-active');
-    document.getElementById('tab-key-idea-btn').classList.remove('is-active');
-    document.getElementById(`tab-${tab}-btn`).classList.add('is-active');
+    // List of all tab buttons and contents
+    const tabs = ['challenges', 'key-idea', 'method'];
 
-    // Toggle tab content
-    document.getElementById('tab-challenges').style.display = tab === 'challenges' ? 'block' : 'none';
-    document.getElementById('tab-key-idea').style.display = tab === 'key-idea' ? 'block' : 'none';
+    // Loop through and update classes/styles
+    tabs.forEach(function (t) {
+      document.getElementById(`tab-${t}-btn`).classList.remove('is-active');
+      document.getElementById(`tab-${t}`).style.display = 'none';
+    });
+
+    // Activate selected tab
+    document.getElementById(`tab-${tab}-btn`).classList.add('is-active');
+    document.getElementById(`tab-${tab}`).style.display = 'block';
   }
 </script>
 
