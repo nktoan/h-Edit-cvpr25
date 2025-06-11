@@ -68,6 +68,9 @@
           <a class="navbar-item" href="https://arxiv.org/abs/2502.09655">
             BDBM (KDD'25)
           </a>
+          <a class="navbar-item" href="https://arxiv.org/abs/2402.02977">
+            Variational Flow Models (Arxiv)
+          </a>          
           <a class="navbar-item" href="https://arxiv.org/abs/2212.03063">
             FAGT (KDD'23)
           </a>
@@ -554,21 +557,21 @@
     <!-- Tabs -->
     <div class="tabs is-toggle is-centered is-fullwidth mb-4">
       <ul>
-        <li class="is-active" id="tab-ablation-worig-btn">
-          <a onclick="showAblationTab('worig')">🎛️ Impact of \( \hat{w}^{\text{orig}} \)</a>
-        </li>
-        <li id="tab-ablation-robust-btn">
-          <a onclick="showAblationTab('robust')">🛡️ Robustness to \( w^{\text{edit}}, \hat{w}^{\text{orig}} \)</a>
-        </li>
         <li id="tab-ablation-steps-btn">
           <a onclick="showAblationTab('steps')">🔄 Effect of Multiple Optimization Steps</a>
+        </li>
+        <li class="is-active" id="tab-ablation-worig-btn">
+          <a onclick="showAblationTab('worig')">🎛️ Impact of \( \; \hat{w}^{\text{orig}} \)</a>
+        </li>
+        <li id="tab-ablation-robust-btn">
+          <a onclick="showAblationTab('robust')">🛡️ Robustness to \( \; (w^{\text{edit}}, \hat{w}^{\text{orig}}) \)</a>
         </li>
       </ul>
     </div>
 
     <!-- Tab Contents -->
     <div id="tab-ablation-worig" class="ablation-tab-content">
-      <h4 class="title is-4">🎛️ Impact of \( \hat{w}^{\text{orig}} \)</h4>
+      <h4 class="title is-4">🎛️ Impact of \( \; \hat{w}^{\text{orig}} \)</h4>
       <div class="mb-5 has-text-centered">
         <img src="./static/images/impact_hat_w_orig.png" alt="Impact of w_orig"
              style="max-width: 100%; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
@@ -576,7 +579,7 @@
     </div>
 
     <div id="tab-ablation-robust" class="ablation-tab-content" style="display: none;">
-      <h4 class="title is-4">🛡️ Robustness to \( w^{\text{edit}} \), \( \hat{w}^{\text{orig}} \)</h4>
+      <h4 class="title is-4">🛡️ Robustness to \( \; (w^{\text{edit}}, \hat{w}^{\text{orig}}) \)</h4>
       <div class="mb-5 has-text-centered">
         <img src="./static/images/impact_hat_w_orig_and_w_edit.png" alt="Robustness to weights"
              style="max-width: 100%; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
