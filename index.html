@@ -627,7 +627,7 @@
 <!-- JavaScript for Ablation Tab Switching -->
 <script>
   function showAblationTab(tabId) {
-    const tabs = ['worig', 'robust', 'steps'];
+    const tabs = ['steps', 'worig', 'robust'];
     tabs.forEach(id => {
       document.getElementById(`tab-ablation-${id}-btn`).classList.remove('is-active');
       document.getElementById(`tab-ablation-${id}`).style.display = 'none';
