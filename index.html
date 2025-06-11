@@ -474,7 +474,7 @@
 <!-- Results Tab Section -->
 <section class="section">
   <div class="container is-max-desktop">
-    <h2 class="title is-3 has-text-centered">🎨 Editing Results</h2>
+    <h2 class="title is-3 has-text-centered">✨ Editing Results</h2>
 
     <!-- Tabs -->
     <div class="tabs is-toggle is-centered is-fullwidth mb-4">
@@ -486,7 +486,7 @@
           <a onclick="showResultTab('face')">👤 Face Swapping</a>
         </li>
         <li id="tab-combined-btn">
-          <a onclick="showResultTab('combined')">🎭 Text + Style Editing</a>
+          <a onclick="showResultTab('combined')">🎨  Combined Text + Style Editing</a>
         </li>
       </ul>
     </div>
@@ -543,7 +543,55 @@
   </div>
 </section>
 
+<!-- Section Divider -->
+<hr style="border: none; height: 1px; background-color: #ccc; opacity: 0.4; margin: 3rem 0;">
 
+<!-- Ablation Studies Section -->
+<section class="section">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3 has-text-centered">🔍 Ablation Studies</h2>
+
+    <!-- Tabs -->
+    <div class="tabs is-toggle is-centered is-fullwidth mb-4">
+      <ul>
+        <li class="is-active" id="tab-ablation-worig-btn">
+          <a onclick="showAblationTab('worig')">🎛️ Impact of \( \hat{w}^{\text{orig}} \)</a>
+        </li>
+        <li id="tab-ablation-robust-btn">
+          <a onclick="showAblationTab('robust')">🛡️ Robustness to \( w^{\text{edit}}, \hat{w}^{\text{orig}} \)</a>
+        </li>
+        <li id="tab-ablation-steps-btn">
+          <a onclick="showAblationTab('steps')">🔄 Effect of Multiple Optimization Steps</a>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Tab Contents -->
+    <div id="tab-ablation-worig" class="ablation-tab-content">
+      <h4 class="title is-4">🎛️ Impact of \( \hat{w}^{\text{orig}} \)</h4>
+      <div class="mb-5 has-text-centered">
+        <img src="./static/images/impact_hat_w_orig.png" alt="Impact of w_orig"
+             style="max-width: 100%; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+      </div>
+    </div>
+
+    <div id="tab-ablation-robust" class="ablation-tab-content" style="display: none;">
+      <h4 class="title is-4">🛡️ Robustness to \( w^{\text{edit}} \), \( \hat{w}^{\text{orig}} \)</h4>
+      <div class="mb-5 has-text-centered">
+        <img src="./static/images/impact_hat_w_orig_and_w_edit.png" alt="Robustness to weights"
+             style="max-width: 100%; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+      </div>
+    </div>
+
+    <div id="tab-ablation-steps" class="ablation-tab-content" style="display: none;">
+      <h4 class="title is-4">🔄 Effect of Implicit Multiple Optimization Steps (1 → 3)</h4>
+      <div class="mb-5 has-text-centered">
+        <img src="./static/images/impact_MOS.png" alt="Effect of Multiple Optimization Steps"
+             style="max-width: 100%; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+      </div>
+    </div>
+  </div>
+</section>
 
 <section class="section" id="BibTeX">
   <div class="container is-max-desktop content">
@@ -572,6 +620,19 @@
     </div>
   </div>
 </footer>
+
+<!-- JavaScript for Ablation Tab Switching -->
+<script>
+  function showAblationTab(tabId) {
+    const tabs = ['worig', 'robust', 'steps'];
+    tabs.forEach(id => {
+      document.getElementById(`tab-ablation-${id}-btn`).classList.remove('is-active');
+      document.getElementById(`tab-ablation-${id}`).style.display = 'none';
+    });
+    document.getElementById(`tab-ablation-${tabId}-btn`).classList.add('is-active');
+    document.getElementById(`tab-ablation-${tabId}`).style.display = 'block';
+  }
+</script>
 
 <!-- JavaScript for Tab Switching -->
 <script>
