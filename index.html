@@ -54,7 +54,7 @@
   </div>
   <div class="navbar-menu">
     <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
-      <a class="navbar-item" href="https://nktoan.github.io">
+      <a class="navbar-item" href="https://nktoan.github.io/h-Edit-cvpr25/">
       <span class="icon">
           <i class="fas fa-home"></i>
       </span>
@@ -308,7 +308,7 @@
       </div>
 
       <div class="content is-size-5 has-text-justified" style="max-width: 1000px; margin: 0 auto;">
-        <h4><strong>A. Overview:</strong></h4>
+        <h4><strong>A. Overview</strong></h4>
 
         <p>
           We leverage Doob's <em>h</em>-transform to steer the generative process from a source distribution toward a target distribution that satisfies a desired condition. This is implemented in two complementary forms: <strong>implicit</strong> and <strong>explicit</strong>, both enabling flexible guidance without retraining.
@@ -396,7 +396,7 @@
           </p>
 
         <h4><strong>C. Designing <em>h</em>-Formulations</strong></h4>
-        <h4><strong>C.1. Text-Guided Editing Design:</strong></h4>
+        <h4><strong>C.1. Text-Guided Editing Design</strong></h4>
 
         <p>
         We compute the gradient of the <em>h</em>-function as:
@@ -470,7 +470,80 @@
 
 <hr style="border: none; height: 1px; background-color: #ccc; opacity: 0.4; margin: 3rem 0;">
 
+<!-- Section Divider -->
+<hr style="border: none; height: 1px; background-color: #ccc; opacity: 0.4; margin: 3rem 0;">
 
+<!-- Results Tab Section -->
+<section class="section">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3 has-text-centered">🎨 Editing Results</h2>
+
+    <!-- Tabs -->
+    <div class="tabs is-toggle is-centered is-fullwidth mb-4">
+      <ul>
+        <li class="is-active" id="tab-text-btn">
+          <a onclick="showResultTab('text')">📝 Text-Guided Editing</a>
+        </li>
+        <li id="tab-face-btn">
+          <a onclick="showResultTab('face')">👤 Face Swapping</a>
+        </li>
+        <li id="tab-combined-btn">
+          <a onclick="showResultTab('combined')">🎭 Text + Style Editing</a>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Tab Contents -->
+    <div id="tab-text" class="result-tab-content">
+      <h4 class="title is-4">📝 Text-Guided Editing</h4>
+      <h4><strong>A. 📊 SOTA Results on PIE-Bench</strong></h4>
+      <div class="mb-5 has-text-centered">
+        <img src="./static/images/PieBench_Result.png" alt="Text-Guided Editing Result on PIE-Bench"
+             style="max-width: 100%; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+      </div>
+      
+      <h4><strong>B. ⚖️ h-Edit-D vs. Baselines</strong></h4>
+      <div class="mb-5 has-text-centered">
+        <img src="./static/images/comparison_h_edit_D.png" alt="h-Edit-D vs. Baselines"
+             style="max-width: 100%; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+      </div>
+      
+      <h4><strong>C. ⚖️ h-Edit-R vs. Baselines</strong></h4>
+      <div class="mb-5 has-text-centered">
+        <img src="./static/images/comparison_h_edit_R.png" alt="h-Edit-R vs. Baselines"
+             style="max-width: 100%; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+      </div>
+    </div>
+
+    <div id="tab-face" class="result-tab-content" style="display: none;">
+      <h4 class="title is-4">👥 Face Swapping</h4>
+
+      <h4><strong>A. 🖼️ Face Swapping Visualization</strong></h4>
+      <div class="mb-5 has-text-centered">
+        <img src="./static/images/comparison_face_swapping.png" alt="Face Swapping Result"
+             style="max-width: 100%; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+      </div>
+
+      <h4><strong>B. 🎭 Works Well Without Masks</strong></h4>
+      <div class="mb-5 has-text-centered">
+        <img src="./static/images/mask_vs_no_mask.png" alt="Face Swapping Result"
+             style="max-width: 100%; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+      </div>
+    </div>
+
+    <div id="tab-combined" class="result-tab-content" style="display: none;">
+      <h4 class="title is-4">🎨 Combined Text + Style Editing</h4>
+      <div class="mb-5 has-text-centered">
+        <img src="./static/images/comparison_combined_editing.png" alt="Combined Editing Result"
+             style="max-width: 100%; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+      </div>
+      <div class="mb-5 has-text-centered">
+        <img src="./static/images/comparsion_h_edit_R_vs_ef.png" alt="Combined Editing Result"
+             style="max-width: 100%; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+      </div>
+    </div>
+  </div>
+</section>
 
 
 
@@ -501,6 +574,19 @@
     </div>
   </div>
 </footer>
+
+<!-- JavaScript for Tab Switching -->
+<script>
+  function showResultTab(tabId) {
+    const tabs = ['text', 'face', 'combined'];
+    tabs.forEach(id => {
+      document.getElementById(`tab-${id}-btn`).classList.remove('is-active');
+      document.getElementById(`tab-${id}`).style.display = 'none';
+    });
+    document.getElementById(`tab-${tabId}-btn`).classList.add('is-active');
+    document.getElementById(`tab-${tabId}`).style.display = 'block';
+  }
+</script>
 
 <script>
   function showTab(tab) {
