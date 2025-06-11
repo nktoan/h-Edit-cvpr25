@@ -35,7 +35,7 @@
   <link rel="stylesheet"
         href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
   <link rel="stylesheet" href="./static/css/index.css">
-  <link rel="icon" href="./static/images/Thumbnail_h_Edit.ico">
+  <link rel="icon" type="image/x-icon" href="./static/images/Thumbnail_h_Edit.ico">
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script defer src="./static/js/fontawesome.all.min.js"></script>
@@ -558,10 +558,10 @@
     <!-- Tabs -->
     <div class="tabs is-toggle is-centered is-fullwidth mb-4">
       <ul>
-        <li id="tab-ablation-steps-btn">
+        <li class="is-active" id="tab-ablation-steps-btn">
           <a onclick="showAblationTab('steps')">🔄 Effect of Multiple Optimization Steps</a>
         </li>
-        <li class="is-active" id="tab-ablation-worig-btn">
+        <li id="tab-ablation-worig-btn">
           <a onclick="showAblationTab('worig')">🎛️ Impact of \( \; \hat{w}^{\text{orig}} \)</a>
         </li>
         <li id="tab-ablation-robust-btn">
@@ -571,7 +571,7 @@
     </div>
 
     <!-- Tab Contents -->
-    <div id="tab-ablation-worig" class="ablation-tab-content">
+    <div id="tab-ablation-worig" class="ablation-tab-content" style="display: none;>
       <h4 class="title is-4">🎛️ Impact of \( \; \hat{w}^{\text{orig}} \)</h4>
       <div class="mb-5 has-text-centered">
         <img src="./static/images/impact_hat_w_orig.png" alt="Impact of w_orig"
@@ -587,7 +587,7 @@
       </div>
     </div>
 
-    <div id="tab-ablation-steps" class="ablation-tab-content" style="display: none;">
+    <div id="tab-ablation-steps" class="ablation-tab-content">
       <h4 class="title is-4">🔄 Effect of Implicit Multiple Optimization Steps (1 → 3)</h4>
       <div class="mb-5 has-text-centered">
         <img src="./static/images/impact_MOS.png" alt="Effect of Multiple Optimization Steps"
