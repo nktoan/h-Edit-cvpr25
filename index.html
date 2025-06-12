@@ -554,7 +554,14 @@
 <section class="section">
   <div class="container is-max-desktop">
     <h2 class="title is-3 has-text-centered">🔍 Ablation Studies</h2>
-
+    <div class="content is-size-5">
+      <p>Through our experiments, we discovered several exciting insights for improving editing effectiveness:</p>
+      <ul>
+        <li>🔄 <strong>Implicit Form Advantage:</strong> Our <strong>implicit formulation</strong> allows <em>multiple optimization steps</em>, which significantly helps resolve <strong>hard editing cases</strong>—even when more sampling steps fail.</li>
+        <li>🎛️ <strong>Role of \(\hat{w}^{\text{orig}}\):</strong> Increasing \( \hat{w}^{\text{orig}} \) towards \( w^{\text{edit}} \) leads to <strong>better faithfulness</strong> and <strong>more effective edits</strong>.</li>
+        <li>🛡️ <strong>Robustness to Weight Choices:</strong> Thanks to our theoretical guarantees, our method remains stable across different values of \( (w^{\text{edit}}, \hat{w}^{\text{orig}}) \).</li>
+      </ul>
+    </div>
     <!-- Tabs -->
     <div class="tabs is-toggle is-centered is-fullwidth mb-4">
       <ul>
