@@ -463,13 +463,13 @@
         \begin{aligned}
         \nabla \log h(x_{t-1}, t - 1) &= \nabla \log \left[ \sum_{x_0} p(x_0 \mid x_{t-1})\, h(x_0, 0) \right] \\
         &= \nabla \log \left[ \mathbb{E}_{p(x_0 \mid x_{t-1})} [h(x_0, 0)] \right] \\
-        &\approx \nabla \log \left[ h(x_0 \mid x_{t-1}, 0) \right]
+        &\approx \nabla \log \left[ h(x_{0 \mid t-1}, 0) \right]
         \end{aligned}
         \]
         </p>
 
         <p>
-        Here, \( x_0 \mid x_{t-1} \) is approximated using <strong>Tweedie's formula</strong>, enabling reward-driven gradients from models trained at timestep 0 to influence editing at later steps. We apply this approach to style transfer using CLIP and face swapping using ArcFace (see experiments).
+        Here, \( x_{0 \mid t-1} \) is approximated using <strong>Tweedie's formula</strong>, enabling reward-driven gradients from models trained at timestep 0 to influence editing at later steps. We apply this approach to style transfer using CLIP and face swapping using ArcFace (see experiments).
         </p>
 
       </div>
